@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Event Registration Portal – Register for your events quickly and easily." />
+    <title>Event Registration Portal</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ===== THEME TOGGLE ===== -->
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <span class="theme-icon sun">☀️</span>
+        <span class="theme-icon moon">🌙</span>
+    </button>
+
+    <!-- ===== BACKGROUND PARTICLES ===== -->
+    <div class="bg-particles" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+    </div>
+
+    <!-- ===== MAIN WRAPPER ===== -->
+    <main class="page-wrapper">
+
+        <!-- Header -->
+        <header class="form-header animate-in">
+            <div class="header-logo-wrap">
+                <img src="arclogo.jpeg" alt="ARC Logo" class="header-logo" />
+            </div>
+            <h1>Event Registration</h1>
+            <p class="header-subtitle">Track Every Participation</p>
+        </header>
+
+        <!-- Registration Card -->
+        <div class="form-card animate-in delay-1">
+            <form id="registration-form" novalidate>
+
+                <!-- ── PERSONAL INFO SECTION ── -->
+                <section class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">👤</span> Personal Information
+                    </h2>
+
+                    <!-- Name -->
+                    <div class="field-group" id="group-name">
+                        <label for="name">Full Name <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">👤</span>
+                            <input type="text" id="name" name="name" placeholder="Enter your full name"
+                                autocomplete="name" required />
+                        </div>
+                        <span class="field-error" id="error-name"></span>
+                    </div>
+
+                    <!-- Roll Number -->
+                    <div class="field-group" id="group-roll">
+                        <label for="roll">Roll Number <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🎓</span>
+                            <input type="text" id="roll" name="roll" placeholder="Enter your roll number"
+                                autocomplete="off" required />
+                        </div>
+                        <span class="field-error" id="error-roll"></span>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="field-group" id="group-phone">
+                        <label for="phone">Phone Number <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📞</span>
+                            <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number"
+                                maxlength="10" inputmode="numeric" pattern="[0-9]{10}" autocomplete="tel" required />
+                        </div>
+                        <span class="field-error" id="error-phone"></span>
+                    </div>
+
+                    <!-- College Name -->
+                    <div class="field-group" id="group-college">
+                        <label for="college">College Name <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🏫</span>
+                            <input type="text" id="college" name="college" placeholder="Enter your college name"
+                                autocomplete="organization" required />
+                        </div>
+                        <span class="field-error" id="error-college"></span>
+                    </div>
+                </section>
+
+                <!-- ── EVENT INFO SECTION ── -->
+                <section class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🏷</span> Event Details
+                    </h2>
+
+                    <!-- Event Name -->
+                    <div class="field-group" id="group-event-name">
+                        <label for="event-name">Event Name <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🏷</span>
+                            <input type="text" id="event-name" name="event-name" placeholder="e.g. TechFest 2025"
+                                required />
+                        </div>
+                        <span class="field-error" id="error-event-name"></span>
+                    </div>
+
+                    <!-- Event Start & End Dates -->
+                    <div class="date-row">
+                        <div class="field-group" id="group-event-start-date">
+                            <label for="event-start-date">Start Date <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">📅</span>
+                                <input type="date" id="event-start-date" name="event-start-date" required />
+                            </div>
+                            <span class="field-error" id="error-event-start-date"></span>
+                        </div>
+
+                        <div class="field-group" id="group-event-end-date">
+                            <label for="event-end-date">End Date <span class="required">*</span></label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">📅</span>
+                                <input type="date" id="event-end-date" name="event-end-date" required />
+                            </div>
+                            <span class="field-error" id="error-event-end-date"></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ── EVENT SELECTION SECTION ── -->
+                <section class="form-section">
+                    <h2 class="section-title">
+                        <span class="section-icon">🎯</span> Select Events Participating In
+                        <span class="required">*</span>
+                    </h2>
+                    <p class="section-hint">You may select multiple events.</p>
+                    <span class="field-error" id="error-events"></span>
+
+                    <div class="checkbox-grid" id="events-grid">
+
+                        <label class="checkbox-card" for="ev-robo-race">
+                            <input type="checkbox" id="ev-robo-race" name="events" value="Robo Race" />
+                            <span class="check-box"></span>
+                            <span class="check-label">🤖 Robo Race</span>
+                        </label>
+
+                        <label class="checkbox-card" for="ev-robo-soccer">
+                            <input type="checkbox" id="ev-robo-soccer" name="events" value="Robo Soccer" />
+                            <span class="check-box"></span>
+                            <span class="check-label">⚽ Robo Soccer</span>
+                        </label>
+
+                        <label class="checkbox-card" for="ev-boat">
+                            <input type="checkbox" id="ev-boat" name="events" value="Boat" />
+                            <span class="check-box"></span>
+                            <span class="check-label">🚤 Boat</span>
+                        </label>
+
+                        <label class="checkbox-card" for="ev-war">
+                            <input type="checkbox" id="ev-war" name="events" value="War" />
+                            <span class="check-box"></span>
+                            <span class="check-label">⚔️ War</span>
+                        </label>
+
+                        <label class="checkbox-card" for="ev-pick-place">
+                            <input type="checkbox" id="ev-pick-place" name="events" value="Pick and Place" />
+                            <span class="check-box"></span>
+                            <span class="check-label">🦾 Pick and Place</span>
+                        </label>
+
+                        <label class="checkbox-card" for="ev-paper">
+                            <input type="checkbox" id="ev-paper" name="events" value="Paper Presentation" />
+                            <span class="check-box"></span>
+                            <span class="check-label">📄 Paper Presentation</span>
+                        </label>
+
+                        <label class="checkbox-card" for="ev-drone">
+                            <input type="checkbox" id="ev-drone" name="events" value="Drone" />
+                            <span class="check-box"></span>
+                            <span class="check-label">🚁 Drone</span>
+                        </label>
+
+                        <label class="checkbox-card" for="ev-other">
+                            <input type="checkbox" id="ev-other" name="events" value="Other" />
+                            <span class="check-box"></span>
+                            <span class="check-label">✏️ Other</span>
+                        </label>
+
+                    </div>
+
+                    <!-- Other - custom input (shown when "Other" is checked) -->
+                    <div class="field-group other-input-group hidden" id="group-other-event">
+                        <label for="other-event">Specify Other Event <span class="required">*</span></label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">✏️</span>
+                            <input type="text" id="other-event" name="other-event" placeholder="Type your event name" />
+                        </div>
+                        <span class="field-error" id="error-other-event"></span>
+                    </div>
+                </section>
+
+                <!-- ── FORM ACTIONS ── -->
+                <div class="form-actions">
+                    <button type="button" id="reset-btn" class="btn-reset">
+                        <span>🔄</span> Reset Form
+                    </button>
+                    <button type="submit" id="submit-btn" class="btn-submit">
+                        <span class="btn-icon" aria-hidden="true">🚀</span>
+                        <span class="btn-text">Register Now</span>
+                        <span class="btn-loader hidden" aria-hidden="true"></span>
+                    </button>
+                </div>
+
+            </form>
+        </div><!-- /form-card -->
+
+    </main>
+
+    <!-- ===== SUCCESS POPUP ===== -->
+    <div class="popup-overlay hidden" id="success-popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+        <div class="popup-card">
+            <div class="popup-icon" aria-hidden="true">✅</div>
+            <h2 id="popup-title">Registration Successful!</h2>
+            <p>Your details have been recorded. See you at the event! 🎉</p>
+            <button id="popup-close" class="btn-submit popup-btn">Done</button>
+        </div>
+    </div>
+
+    <!-- ===== TOAST CONTAINER ===== -->
+    <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+    <!-- Main Script -->
+    <script src="app.js"></script>
+</body>
+
+</html>
